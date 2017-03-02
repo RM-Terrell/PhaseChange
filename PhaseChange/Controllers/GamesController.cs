@@ -10,6 +10,24 @@ namespace PhaseChange.Controllers
 {
     public class GamesController : Controller
     {
+
+        public ViewResult Index()
+        {
+            var games = GetGames();
+
+            return View(games);
+        }
+
+        private IEnumerable<Game> GetGames()
+        {
+            return new List<Game>
+            {
+                new Game { Id = 1, Name = "Bloodborne" },
+                new Game { Id = 2, Name = "Dark Souls 3" }
+            };
+        }
+
+
         // GET: Games
         public ActionResult Random()
         {

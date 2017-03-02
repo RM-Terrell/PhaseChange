@@ -1,8 +1,23 @@
-﻿
+﻿@model IEnumerable<PhaseChange.Models.Game>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Games";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>Movies</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Games</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@game.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
