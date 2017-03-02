@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PhaseChange.Models;
+using PhaseChange.ViewModels;
 
 namespace PhaseChange.Controllers
 {
@@ -13,8 +14,18 @@ namespace PhaseChange.Controllers
         public ActionResult Random()
         {
             var game = new Game() { Name = "Horizon: Zero Dawn" };
-
-            return View(game);
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1" },
+                new Customer {Name = "Cusomter 2" }
+            };
+            var viewModel = new RandomGameViewModel
+            {
+                Game = game,
+                Customers = customers
+            };
+            
+            return View(viewModel);
             // examples of return types
             // return Content("Hello World!");
             // return HttpNotFound():
