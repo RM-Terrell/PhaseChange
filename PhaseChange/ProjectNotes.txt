@@ -1,0 +1,9 @@
+﻿Material covered:
+-Lots of material on shortcuts, snippets, and general VS workflow. Did the VS productivity guide by Mosh before this project also.
+-Over riding css and other references in BundleConfig
+
+
+
+
+
+Things that need more study:

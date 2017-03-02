@@ -13,6 +13,12 @@ namespace PhaseChange
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute("GamesByReleaseData",
+            //    "games/released/{year}/}month}",
+            //    new { controller = "Games", action = "ByReleaseDate" }); //Defined a custom route here. 
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
