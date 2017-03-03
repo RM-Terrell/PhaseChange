@@ -7,33 +7,44 @@ using System.Web.Mvc;
 
 namespace PhaseChange.Controllers
 {
-    
-        public class CustomersController : Controller
+
+    public class CustomersController : Controller
+
+    {
+        private ApplicationDbContext _context; //Must do set up dbcontext to use customer database
+        public CustomersController()
         {
-            public ViewResult Index()
-            {
-                var customers = GetCustomers();
+            _context = new ApplicationDbContext();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
-                return View(customers);
-            }
+        public ViewResult Index()
+        {
+            var customers = GetCustomers();
 
-            public ActionResult Details(int id)
-            {
-                var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            return View(customers);
+        }
 
-                if (customer == null)
-                    return HttpNotFound();
+        public ActionResult Details(int id)
+        {
+            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
 
-                return View(customer);
-            }
+            if (customer == null)
+                return HttpNotFound();
 
-            private IEnumerable<Customer> GetCustomers()
-            {
-                return new List<Customer>
+            return View(customer);
+        }
+
+        private IEnumerable<Customer> GetCustomers()
+        {
+            return new List<Customer>
             {
                 new Customer { Id = 1, Name = "John Smith" },
                 new Customer { Id = 2, Name = "Mary Williams" }
             };
-            }
         }
     }
+}

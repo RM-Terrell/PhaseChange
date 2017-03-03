@@ -15,6 +15,7 @@ namespace PhaseChange.Migrations
         
         public override void Down()
         {
+
         }
     }
 }

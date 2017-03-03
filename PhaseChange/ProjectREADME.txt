@@ -3,6 +3,7 @@
 -Over riding css and other references in BundleConfig
 -Code first and database workflow. This project is built to be 100% code first.
 -Migrations
+-Data annotations
 
 
 
