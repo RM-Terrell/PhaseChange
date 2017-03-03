@@ -10,3 +10,4 @@
 
 Things that need more study:
 -Disposable objects
+-The nature of foreign keys
