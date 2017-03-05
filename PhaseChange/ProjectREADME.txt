@@ -12,3 +12,4 @@
 Things that need more study:
 -Disposable objects
 -The nature of foreign keys
+-Exact Difference between "Up" and "Down" methods in migrations

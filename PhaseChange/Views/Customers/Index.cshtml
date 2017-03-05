@@ -26,6 +26,7 @@ else
         <thead>
             <tr>
                 <th>Customer</th>
+                <th>Membership Type</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,10 @@ else
             {
                 <tr>
                     <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td> @*So if you just toss "type" or "name" in here, youll get an exception.
+                                                                       The reason for that is that by default there related objects to custom,
+                                                                       are not loaded. You have to fix this with eager loading*@
+
                 </tr>
             }
         </tbody>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using PhaseChange.Models;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace PhaseChange.Controllers
 {
@@ -23,15 +24,18 @@ namespace PhaseChange.Controllers
 
         public ViewResult Index()
         {
-            var customers = _context.Customers.ToList(); //BOOM can get all customers this way from DB. 
-                                                        //ToList executes immediatly
+            var customers = _context.Customers.Include(c=>c.MembershipType).ToList(); 
+            //BOOM can get all customers this way from DB. 
+            //ToList executes immediatly. "Include" is for eager loading
 
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id); //Single or default also executes immediatly
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id); 
+            //Single or default also executes immediatly
+            //More eager loading here 
 
             if (customer == null)
                 return HttpNotFound();
