@@ -15,5 +15,6 @@ namespace PhaseChange.Models
         public bool IsSubscribedToNewLetter { get; set; }
         public MembershipType MembershipType { get; set; } //Navigation property
         public byte MembershipTypeId { get; set; }//Treated as a forgeign key automagically
+        public DateTime? Birthdate { get; set; }
     }
 }
