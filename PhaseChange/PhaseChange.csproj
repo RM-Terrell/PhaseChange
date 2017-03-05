@@ -235,10 +235,23 @@
     <Compile Include="Migrations\201703052207075_AddBirthdateToCustomer.Designer.cs">
       <DependentUpon>201703052207075_AddBirthdateToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703052246272_AddedGameData.cs" />
+    <Compile Include="Migrations\201703052246272_AddedGameData.Designer.cs">
+      <DependentUpon>201703052246272_AddedGameData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703052253125_PlsFixPls.cs" />
+    <Compile Include="Migrations\201703052253125_PlsFixPls.Designer.cs">
+      <DependentUpon>201703052253125_PlsFixPls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703052256301_AddGenres.cs" />
+    <Compile Include="Migrations\201703052256301_AddGenres.Designer.cs">
+      <DependentUpon>201703052256301_AddGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -311,6 +324,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,6 +361,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703052207075_AddBirthdateToCustomer.resx">
       <DependentUpon>201703052207075_AddBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703052246272_AddedGameData.resx">
+      <DependentUpon>201703052246272_AddedGameData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703052253125_PlsFixPls.resx">
+      <DependentUpon>201703052253125_PlsFixPls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703052256301_AddGenres.resx">
+      <DependentUpon>201703052256301_AddGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

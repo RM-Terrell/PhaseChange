@@ -5,27 +5,42 @@ using System.Web;
 using System.Web.Mvc;
 using PhaseChange.Models;
 using PhaseChange.ViewModels;
+using System.Data.Entity;
+
 
 namespace PhaseChange.Controllers
 {
     public class GamesController : Controller
     {
+        private ApplicationDbContext _context; //hey dont be stupid and make this public
+        public GamesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
 
         public ViewResult Index()
         {
-            var games = GetGames();
+            var games = _context.Games.Include(g=>g.Genre).ToList();
 
             return View(games);
         }
 
-        private IEnumerable<Game> GetGames()
+        public ActionResult Details(int id)
         {
-            return new List<Game>
-            {
-                new Game { Id = 1, Name = "Bloodborne" },
-                new Game { Id = 2, Name = "Dark Souls 3" }
-            };
+            var game = _context.Games.Include(g => g.Genre).SingleOrDefault(g => g.Id == id);
+            if (game == null)
+                return HttpNotFound();
+            return View(game);
+            
         }
+
+
 
 
         // GET: Games
