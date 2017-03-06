@@ -1,0 +1,32 @@
+﻿@model PhaseChange.ViewModels.NewCustomerViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+
+@using (Html.BeginForm("Create", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Name)
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" }) @*Form control comes from bootstrap*@
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthdate)        
+        @Html.TextBoxFor(m => m.Customer.Birthdate, new { @class = "form-control" }) @*Form control comes from bootstrap*@
+    </div>
+ 
+    <div class="checkbox">
+        <label>
+                       @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewLetter) Subsribed to Newsletter? @*Got this mark up from Get Bootstrap.com. Default checkbox was wonky*@
+        </label >
+    </div >
+
+}
+@*If just "html....." is used without "using" only the begninning <form> will be rendered.
+By putting it in "using" this does some magic with it being a disposable object and renders the </form>.
+Need to learn more on disposable objects.
+    Another note. String length 255 and required for the box comes from the customer model. This is automagically done by the .NET MVC.
+    BUT. If raw HTML is used instead of CS code, it must all be hard coded by hand.*@
+

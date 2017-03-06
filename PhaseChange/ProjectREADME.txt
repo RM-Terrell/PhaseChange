@@ -4,6 +4,12 @@
 -Code first and database workflow. This project is built to be 100% code first.
 -Migrations
 -Data annotations
+-Adding reference in entity model in order to be included in migrations
+-Migration ordering
+-How to wipe database and start over with just "update-database"
+-Eager loading
+-Html rendering and forms
+-Html LabelFor
 
 
 

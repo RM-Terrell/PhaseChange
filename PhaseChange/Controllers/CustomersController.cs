@@ -5,6 +5,7 @@ using System.Web;
 using PhaseChange.Models;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PhaseChange.ViewModels;
 
 namespace PhaseChange.Controllers
 {
@@ -12,7 +13,7 @@ namespace PhaseChange.Controllers
     public class CustomersController : Controller
 
     {
-        private ApplicationDbContext _context; //Must do set up dbcontext to use customer database
+        private ApplicationDbContext _context; //Must set up dbcontext to use customer database
         public CustomersController()
         {
             _context = new ApplicationDbContext();
@@ -20,6 +21,16 @@ namespace PhaseChange.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
         }
 
         public ViewResult Index()

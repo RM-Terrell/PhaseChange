@@ -1,5 +1,6 @@
 //Fast and dirty migrations. Woops. 
-//So ya i need to add the dbset reference in identity models first or identity framework just sits there and drools when i do migrations around that data.
+//So i need to add the dbset reference in identity models first or identity framework just sits there and drools when i do migrations around that data.
+//Mosh said this and everything in the tutorial and I totally spaced it. Lesson learned, always add refernce to be included in migrations.
 
 namespace PhaseChange.Migrations
 {
