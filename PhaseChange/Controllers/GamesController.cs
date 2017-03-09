@@ -71,6 +71,6 @@ namespace PhaseChange.Controllers
         {
             return Content(year+"/"+month); //takes two parameters since we gave it two
         }
-       
+        
     }
 }

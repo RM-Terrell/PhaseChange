@@ -18,4 +18,6 @@ namespace PhaseChange.Models
         [Display(Name = "Date of Birth")]
         public DateTime? Birthdate { get; set; } //"?" makes it nullable
     }
+    
 }
+
