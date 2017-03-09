@@ -10,6 +10,8 @@
 -Eager loading
 -Html rendering and forms
 -Html LabelFor
+-Form building
+-TryUpdate method and the security holes it creates
 
 
 
