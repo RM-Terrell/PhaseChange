@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PhaseChange.Models;
 using PhaseChange.ViewModels;
 using System.Data.Entity;
+using PhaseChange.Migrations;
 
 
 namespace PhaseChange.Controllers
@@ -30,6 +31,39 @@ namespace PhaseChange.Controllers
 
             return View(games);
         }
+
+
+        public ViewResult New()
+        {
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new GameFormViewModel
+            {
+                Genres = genres
+            };
+            return View("GameForm", viewModel);
+
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var game = _context.Games.SingleOrDefault(c => c.Id == id);
+
+            if (game == null)
+                return HttpNotFound();
+
+            var viewModel = new GameFormViewModel
+            {
+                Game = game,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("GameForm", viewModel);
+
+        }
+
+
 
         public ActionResult Details(int id)
         {
@@ -66,11 +100,34 @@ namespace PhaseChange.Controllers
 
 
         }
-        [Route("games/released/{year}/{month:regex(\\d{2}):range(1,12)}")] //regex is for regular expression for attribute routing
-        public ActionResult ByReleaseDate(int year, byte month)
+
+        [HttpPost]
+        public ActionResult Save(Game game)
         {
-            return Content(year+"/"+month); //takes two parameters since we gave it two
+            if(game.Id == 0)
+            {
+                game.DateAdded = DateTime.Now;
+                _context.Games.Add(game);
+
+            }
+            else
+            {
+                var gameInDb = _context.Games.Single(g => g.Id == game.Id);
+                gameInDb.Name = game.Name;
+                gameInDb.GenreId = game.GenreId;
+                gameInDb.NumberInStock = game.NumberInStock;
+                gameInDb.ReleaseDate = game.ReleaseDate;
+
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Games"); //send user back to the index page for games after editing
+
         }
-        
+
+
+
+
+
     }
 }
