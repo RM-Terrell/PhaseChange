@@ -18,6 +18,8 @@
 -Replacing magic strings for future maintainability
 -Client side validation
 -Cross site request forgery
+-ASP .NET web API
+-RESTful Conventions
 -
 
 
