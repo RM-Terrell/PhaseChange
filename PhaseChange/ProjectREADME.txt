@@ -13,6 +13,8 @@
 -Form building
 -TryUpdate method and the security holes it creates
 -New stuff in VS 2017
+-Validation workflow and validation messages
+
 
 
 

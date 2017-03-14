@@ -15,7 +15,7 @@ namespace PhaseChange.Models
 
         public Genre Genre { get; set; }
 
-        [Display(Name = "Genre")]
+        [Display(Name = "Genre")] //Display over rides for intuitive use
         [Required]
         public byte GenreId { get; set; }
 
