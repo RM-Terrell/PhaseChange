@@ -23,6 +23,7 @@ namespace PhaseChange.Models
                                                   // Byte is implicitly requried. Use byte? if you want nullable
 
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; } //"?" makes it nullable
     }
     

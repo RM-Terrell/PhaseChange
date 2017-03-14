@@ -8,21 +8,24 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true, "Please fix the following errors")  //Used to create an error summary at the top of the page
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" }) @*Form control comes from bootstrap*@
         @Html.ValidationMessageFor(m=>m.Customer.Name) @*This sends the validation message*@
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" }) @*Form control comes from bootstrap*@
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthdate)        
         @Html.TextBoxFor(m => m.Customer.Birthdate,"{0:d MMM yyyyy}", new { @class = "form-control" }) @*Form control comes from bootstrap*@
+        @Html.ValidationMessageFor(m=>m.Customer.Birthdate)
     </div>
  
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id","Name"),"Select Membership Type", new { @class = "form-control" }) @*Form control comes from bootstrap*@
-        @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
-    </div>
+    
 
     <div class="checkbox">
         <label>
@@ -31,6 +34,8 @@
     </div>
 
     @Html.HiddenFor(m=>m.Customer.Id) //Hidden id
+
+    @Html.AntiForgeryToken()
 
     <button type="submit" class="btn btn-primary">Save</button>
 
@@ -41,3 +46,9 @@ Need to learn more on disposable objects.
     Another note. String length 255 and required for the box comes from the customer model. This is automagically done by the .NET MVC.
     BUT. If raw HTML is used instead of CS code, it must all be hard coded by hand.*@
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval") 
+
+}
+@*This section turns on jquery, client side validation*@
