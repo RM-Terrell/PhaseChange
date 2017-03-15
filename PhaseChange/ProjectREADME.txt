@@ -20,7 +20,8 @@
 -Cross site request forgery
 -ASP .NET web API
 -RESTful Conventions
-DELETE LATER. TEST PUSH FROM NEW DESKTOP
+-Learned how dreafully unstable the current (March 2017) build of Visual Studio 2017 is. Lots of test Pushes and Syncs around that
+-AutoMapper
 
 
 
@@ -34,3 +35,4 @@ Things that need more study:
 -Disposable objects
 -The nature of foreign keys
 -Exact Difference between "Up" and "Down" methods in migrations
+-Automapper and API mapping
