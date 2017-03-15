@@ -22,6 +22,7 @@
 -RESTful Conventions
 -Learned how dreafully unstable the current (March 2017) build of Visual Studio 2017 is. Lots of test Pushes and Syncs around that
 -AutoMapper
+-Camel notation for JS
 
 
 
