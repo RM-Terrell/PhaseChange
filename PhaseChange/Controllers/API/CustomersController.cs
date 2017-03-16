@@ -19,29 +19,31 @@ namespace PhaseChange.Controllers.API
         }
 
         //GET /api/customers
-        public IEnumerable<CustomerDTO> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);//This maps customer to customerDTO. No () because not being called
+            var customerDTOs = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
+            return Ok(customerDTOs);
+
         }
 
         //GET /api/customers/1
-        public CustomerDTO GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Customer, CustomerDTO>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDTO>(customer));
         }
 
         // POST /api/customers
         [HttpPost]
-        public CustomerDTO CreateCustomer(CustomerDTO customerDTO) //Could also name this PostCustomer by framework convention but that wont hold up under renaming
+        public IHttpActionResult CreateCustomer(CustomerDTO customerDTO) //Could also name this PostCustomer by framework convention but that wont hold up under renaming
                                                           //Using HttpPost explicitley is more versitile
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customer = Mapper.Map<CustomerDTO, Customer>(customerDTO);
             _context.Customers.Add(customer);
@@ -49,20 +51,20 @@ namespace PhaseChange.Controllers.API
 
             customerDTO.Id = customer.Id;
 
-            return customerDTO;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDTO);
         }
 
         //PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDTO customerDTO)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDTO customerDTO)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             Mapper.Map(customerDTO, customerInDb);
@@ -70,22 +72,26 @@ namespace PhaseChange.Controllers.API
 
             _context.SaveChanges();
 
+            return Ok();
+
 
 
         }
 
         //DELETE /api/customers/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok();
 
 
         }
