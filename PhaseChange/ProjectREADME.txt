@@ -24,7 +24,9 @@
 -AutoMapper
 -Camel notation for JS
 -JQuery integration
+-Click handler optimization for jquery 
 -
+
 
 
 
