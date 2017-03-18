@@ -31,20 +31,26 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model)
+           @* @foreach (var customer in Model)
             {
                 <tr>
                     <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                     <td>@customer.MembershipType.Name</td> 
-    @*So if you just toss "type" or "name" in here, youll get an exception.
-      The reason for that is that by default there related objects to custom,
-      are not loaded. You have to fix this with eager loading*@
+      //So if you just toss "type" or "name" in here, youll get an exception.
+      //The reason for that is that by default there related objects to custom,
+      //are not loaded. You have to fix this with eager loading. 
+
+               //Currently commented out because API is handling this functionality. Uncomment if API functionality removed.
                     <td>
                         <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
                     </td>
 
                 </tr>
-            }
+            }*@
+
+
+
+
         </tbody>
     </table>
 }
@@ -53,7 +59,29 @@ else
 {
 <script>
     $(document).ready(function () {
-        $("#customers").DataTable();
+        $("#customers").DataTable({
+            ajax: {
+                url: "/api/customers",
+                datasrc: ""
+            },
+            columns: [
+                {
+                    data: "name",
+                    render: function (data, type, customer) {
+                        return "<a href='/customers/edit/" = customer.id + "'>" + customer.name + "</a>";
+                    }
+                },
+                {
+                    data: "name"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button class ='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                    }
+                }
+            ]
+        });
 
         $("#customers").on("click", ".js-delete", function () {
             var button = $(this);
