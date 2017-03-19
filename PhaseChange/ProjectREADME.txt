@@ -25,6 +25,7 @@
 -Camel notation for JS
 -JQuery integration
 -Click handler optimization for jquery 
+-AJAX integration
 -
 
 
@@ -41,3 +42,8 @@ Things that need more study:
 -The nature of foreign keys
 -Exact Difference between "Up" and "Down" methods in migrations
 -Automapper and API mapping
+
+
+Other notes:
+-Lots of code left in but commented out purley as a reminder for functionality I thought was useful to know about and didnt want to permenetly delete since this is a learning project.
+-

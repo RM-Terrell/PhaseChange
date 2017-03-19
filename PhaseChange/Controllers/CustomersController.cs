@@ -66,11 +66,13 @@ namespace PhaseChange.Controllers
 
         public ViewResult Index()
         {
-            var customers = _context.Customers.Include(c=>c.MembershipType).ToList(); 
+            //var customers = _context.Customers.Include(c=>c.MembershipType).ToList(); 
             //BOOM can get all customers this way from DB. 
             //ToList executes immediatly. "Include" is for eager loading
 
-            return View(customers);
+            //Commented out customer list from Db because that functionality is no being handled by ajax
+
+            return View();
         }
 
         public ActionResult Details(int id)

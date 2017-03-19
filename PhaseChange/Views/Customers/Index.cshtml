@@ -16,44 +16,48 @@
 }
 
 <h2>Customers</h2>
-@if (!Model.Any())
+@*@if (!Model.Any())  //Old code for handling a custom message if no customers. Post API throws exception because no model being passed now.
+                        
 {
     <p>We don't have any customers yet.</p>
 }
 else
 {
-    <table id="customers" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-           @* @foreach (var customer in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td> 
-      //So if you just toss "type" or "name" in here, youll get an exception.
-      //The reason for that is that by default there related objects to custom,
-      //are not loaded. You have to fix this with eager loading. 
+    
+}*@
 
-               //Currently commented out because API is handling this functionality. Uncomment if API functionality removed.
-                    <td>
-                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-                    </td>
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* @foreach (var customer in Model)
 
-                </tr>
-            }*@
+            //Currently commented out because API is handling this functionality. Uncomment if API functionality removed.
 
 
+                  {
+                      <tr>
+                          <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                          <td>@customer.MembershipType.Name</td>
+
+            //So if you just toss "type" or "name" in here, youll get an exception.
+            //The reason for that is that by default there related objects to custom,
+            //are not loaded. You have to fix this with eager loading.
 
 
-        </tbody>
-    </table>
-}
+                          <td>
+                              <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                          </td>
+
+                      </tr>
+                  }*@
+    </tbody>
+</table>
 
 @section scripts
 {
@@ -64,7 +68,7 @@ else
                 url: "/api/customers",
                 datasrc: ""
             },
-            columns: [
+            columns: [  //The columns are spearated by commas
                 {
                     data: "name",
                     render: function (data, type, customer) {
