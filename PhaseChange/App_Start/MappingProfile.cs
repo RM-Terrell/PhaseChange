@@ -16,6 +16,7 @@ namespace PhaseChange.App_Start
             //Mapping domain to the DTO
             Mapper.CreateMap<Customer, CustomerDTO>();
             Mapper.CreateMap<Game, GameDTO>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDTO>();
 
 
             //Mapping DTO to the domain

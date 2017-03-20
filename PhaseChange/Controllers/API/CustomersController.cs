@@ -7,6 +7,7 @@ using System.Web.Http;
 using PhaseChange.Models;
 using PhaseChange.DTOs;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace PhaseChange.Controllers.API
 {
@@ -21,7 +22,11 @@ namespace PhaseChange.Controllers.API
         //GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customerDTOs = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
+            var customerDTOs = _context.Customers
+                .Include(c=>c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDTO>);
+
             return Ok(customerDTOs);
 
         }

@@ -19,7 +19,8 @@ namespace PhaseChange.DTOs
         public bool IsSubscribedToNewLetter { get; set; }
 
         public byte MembershipTypeId { get; set; }
-                                                  
+        public MembershipTypeDTO MembershipType { get; set; }  //Linked this to a DTO instead of the model to avoid having the model too coupled. Mapped it instead.
+
         //[Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; } 
     }

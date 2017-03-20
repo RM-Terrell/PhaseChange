@@ -42,6 +42,7 @@ Things that need more study:
 -The nature of foreign keys
 -Exact Difference between "Up" and "Down" methods in migrations
 -Automapper and API mapping
+-Using Postman for chrome
 
 
 Other notes:
