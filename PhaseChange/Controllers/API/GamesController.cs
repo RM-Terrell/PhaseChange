@@ -7,6 +7,7 @@ using System.Web.Http;
 using PhaseChange.Models;
 using PhaseChange.DTOs;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace PhaseChange.Controllers.API
 {
@@ -21,7 +22,10 @@ namespace PhaseChange.Controllers.API
 
         public IEnumerable<GameDTO> GetGames()
         {
-            return _context.Games.ToList().Select(Mapper.Map<Game, GameDTO>);
+            return _context.Games
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Game, GameDTO>);
         }
 
 

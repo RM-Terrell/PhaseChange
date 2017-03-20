@@ -26,7 +26,11 @@
 -JQuery integration
 -Click handler optimization for jquery 
 -AJAX integration
--
+-Performance of client side table plugin vs server side rendering. 
+-Single page applications
+-The find and replace function in VS. 
+
+
 
 
 

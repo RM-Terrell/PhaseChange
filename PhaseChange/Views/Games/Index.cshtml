@@ -9,20 +9,68 @@
 <p>
     @Html.ActionLink("New Game", "New", "Games", null, new { @class = "btn btn-primary" }) @*Link disguised as a button*@
 </p>
-<table class="table table-bordered table-hover">
+<table id="games" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Games</th>
             <td>Genre</td>
+            <td>Delete</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var game in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(game.Name, "Edit", "Games", new { id = game.Id }, null)</td>
-                <td>@game.Genre.Name</td>
-            </tr>
-        }
+
     </tbody>
 </table>
+
+@section scripts{
+<script>
+        $(document).ready(function () {
+            var table = $("#games").DataTable({
+                ajax: {
+                    url: "/api/games",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, game) {
+                            return "<a href='/games/edit/" + game.id + "'>" + game.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-game-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#games").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this game?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/games/" + button.attr("data-game-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw(); //same fix as in the customers index. Removes and redraws
+                            }
+                        });
+                    }
+                });
+            });
+        });
+</script>
+    
+    
+    
+    
+    
+    
+    }
