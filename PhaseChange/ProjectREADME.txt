@@ -29,6 +29,11 @@
 -Performance of client side table plugin vs server side rendering. 
 -Single page applications
 -The find and replace function in VS. 
+-Authentication in .NET MVC
+-Async methods and Await
+-How to generate SQL scripts by right clicking the row
+-User roles
+-Seeding the database with scripts
 
 
 
