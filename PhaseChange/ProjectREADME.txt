@@ -43,6 +43,8 @@
 -Lazy loading vs eager loading
 -Output caching
 -Asynch, await, scalability vs performance
+-End to end feature building
+	-
 
 
 
