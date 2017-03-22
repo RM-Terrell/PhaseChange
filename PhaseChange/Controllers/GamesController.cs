@@ -27,10 +27,14 @@ namespace PhaseChange.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageGames))
+                return View("List");
+
+            return View("ReadOnlyList"); //Dont need to put this in an else block
         }
 
 
+        [Authorize(Roles = RoleName.CanManageGames)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PhaseChange.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Games</h2>
+
+<table id="games" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Games</th>
+            <td>Genre</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+@section scripts{
+<script>
+        $(document).ready(function () {
+            var table = $("#games").DataTable({
+                ajax: {
+                    url: "/api/games",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+        });
+</script>
+    
+    
+    
+    
+    
+    
+    }
