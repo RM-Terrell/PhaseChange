@@ -34,13 +34,11 @@
 -How to generate SQL scripts by right clicking the row
 -User roles
 -Seeding the database with scripts
-
-
-
-
-
-
-
+-External logins via facebook, google, etc. Didnt impliment these but covered how to do it
+-Moshs Optimization Rules
+	-Do not sacrifice the maintainability of your code to premature optimization
+	-Be realistic and think like an engineer
+	-Be pragmatic and ensure your efforts will have observable results and give value
 
 
 
