@@ -44,7 +44,9 @@
 -Output caching
 -Asynch, await, scalability vs performance
 -End to end feature building
+	-Twitter typeahead
 	-
+
 
 
 

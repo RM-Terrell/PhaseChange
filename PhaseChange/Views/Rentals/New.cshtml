@@ -1,0 +1,109 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "New Rental Form";
+    
+}
+
+<h2>New Rental Form</h2>
+
+
+<form>
+    <div class="form-group">
+        <label>Customer</label>  @* Built with ZenCoding feature "div.form-group>label+input[type='text'].form-control" *@
+        <input id="customer" type="text" value="" class="form-control" />
+    </div> 
+
+    <div class="form-group">
+        <label>Game</label>
+        <input id="game" type="text" value="" class="form-control" />
+    </div>
+
+
+
+    <button class="btn btn-primary">Submit</button> @*Built with "button.btn.btn-primary"  *@
+</form>
+
+@section scripts
+{
+    <script>
+
+
+        $(document).ready(function () {
+            
+            var vm = {
+                gameIds:[]
+            }; @*VM for view model*@
+
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,                
+                remote: {
+                    url: '/api/customers?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#customer').typeahead({  @*Customize typeahead behavior here*@
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'customers',
+                display: 'name',
+                source: customers
+            });
+        }).on("typeahead:select", function (e, customer) {  @*Selects the object clicked on by the user in typeahead*@
+            vm.customerId = customer.id;
+
+        });
+
+        @*--------------------------------------------------------------------------------------------------------------------------*@
+
+
+        var games = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: '/api/games?query=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#game').typeahead({
+            minLength: 3,
+            highlight: true
+        }, {
+            name: 'games',
+            display: 'name',
+            source: games
+        }).on("typeahead:select", function (e, game) {
+            $("#games").append("<li class='list-group-item'>" + game.name + "</li>");
+
+            $("#game").typeahead("val", "");
+
+            vm.gameIds.push(game.id);
+        });
+
+        $("#newRental").submit(function (e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                url: "/api/newRentals",
+                method: "post",
+                data: vm
+            })
+            .done(function () {
+                console.log("done");
+            })
+            .fail(function () {
+
+            });
+        });
+       
+
+    </script>
+    
+    
+    
+    
+    }

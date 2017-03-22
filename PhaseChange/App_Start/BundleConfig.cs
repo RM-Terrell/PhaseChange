@@ -14,7 +14,9 @@ namespace PhaseChange
                         "~/scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/scripts/datatables/jquery.datatables.js",
-                        "~/scripts/datatables/datatables.bootstrap.js"));
+                        "~/scripts/datatables/datatables.bootstrap.js",
+                        "~/scripts/typeahead.bundle.js"));
+            
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,6 +29,7 @@ namespace PhaseChange
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapLumen.css",
                       "~/content/datatables/css/datatables.bootstrap.css",
+                      "~/content/TypeAhead.css",
                       "~/Content/site.css"));
         }
     }
