@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace PhaseChange.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        [AllowAnonymous]
+        //Example of cache disabling [OutputCache(Duation = 0, VaryByParam = "*", NoStore = true)]
         public ActionResult Index()
         {
             return View();

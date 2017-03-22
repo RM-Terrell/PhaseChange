@@ -20,7 +20,7 @@
     </div>
 
     
-    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/lib")  @*Having these at the end helps performance because script loading occurs after the rest of the page has rendered*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

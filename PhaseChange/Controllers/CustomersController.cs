@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using PhaseChange.ViewModels;
 
+
 namespace PhaseChange.Controllers
 {
     
@@ -72,6 +73,7 @@ namespace PhaseChange.Controllers
 
             //Commented out customer list from Db because that functionality is no being handled by ajax
 
+            
             return View();
         }
 

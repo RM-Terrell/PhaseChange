@@ -39,6 +39,10 @@
 	-Do not sacrifice the maintainability of your code to premature optimization
 	-Be realistic and think like an engineer
 	-Be pragmatic and ensure your efforts will have observable results and give value
+-Glimpse
+-Lazy loading vs eager loading
+-Output caching
+-Asynch, await, scalability vs performance
 
 
 
