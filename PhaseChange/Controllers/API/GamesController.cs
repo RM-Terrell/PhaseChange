@@ -20,10 +20,16 @@ namespace PhaseChange.Controllers.API
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<GameDTO> GetGames()
+        public IEnumerable<GameDTO> GetGames(string query = null)
         {
-            return _context.Games
+            var gamesQuery = _context.Games
                 .Include(m => m.Genre)
+                .Where(m => m.NumberAvailable > 0);  //Get only available games
+
+            if (!String.IsNullOrWhiteSpace(query))
+                gamesQuery = gamesQuery.Where(m => m.Name.Contains(query));
+
+            return gamesQuery
                 .ToList()
                 .Select(Mapper.Map<Game, GameDTO>);
         }

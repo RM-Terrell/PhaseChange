@@ -10,28 +10,39 @@
 <form>
     <div class="form-group">
         <label>Customer</label>  @* Built with ZenCoding feature "div.form-group>label+input[type='text'].form-control" *@
-        <input id="customer" type="text" value="" class="form-control" />
+        <div class="tt-container">
+            <input id="customer" required type="text" value="" class="form-control" />
+        </div>
     </div> 
 
     <div class="form-group">
         <label>Game</label>
-        <input id="game" type="text" value="" class="form-control" />
+        <div class="tt-container">
+            <input id="game" type="text" value="" class="form-control" />
+        </div>
     </div>
 
-
+    <div class="row">
+        <div class="col-md-4">
+            <ul id="games" class="list-group"></ul> @* ul#games.list-group *@
+        </div>
+    </div>
 
     <button class="btn btn-primary">Submit</button> @*Built with "button.btn.btn-primary"  *@
 </form>
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
 
 
         $(document).ready(function () {
             
             var vm = {
-                gameIds:[]
+                gameIds: []
+
+
             }; @*VM for view model*@
 
             var customers = new Bloodhound({
@@ -75,6 +86,7 @@
             name: 'games',
             display: 'name',
             source: games
+
         }).on("typeahead:select", function (e, game) {
             $("#games").append("<li class='list-group-item'>" + game.name + "</li>");
 
@@ -83,25 +95,26 @@
             vm.gameIds.push(game.id);
         });
 
-        $("#newRental").submit(function (e) {
+        $("#newRental").validate({
+            submitHandler: function () {
+                e.preventDefault();
+                e.preventDefault();
 
-            e.preventDefault();
-
-            $.ajax({
-                url: "/api/newRentals",
-                method: "post",
-                data: vm
-            })
-            .done(function () {
-                console.log("done");
-            })
-            .fail(function () {
-
-            });
+                $.ajax({
+                    url: "/api/newRentals",
+                    method: "post",
+                    data: vm
+                })
+                .done(function () {
+                    toastr.success("Rentals successfully recorded.");
+                })
+                .fail(function () {
+                    toastr.error("Something unexpected happened.");
+                });
+            }
         });
-       
 
-    </script>
+       </script>
     
     
     
