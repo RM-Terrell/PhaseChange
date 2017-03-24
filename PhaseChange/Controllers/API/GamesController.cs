@@ -23,8 +23,8 @@ namespace PhaseChange.Controllers.API
         public IEnumerable<GameDTO> GetGames(string query = null)
         {
             var gamesQuery = _context.Games
-                .Include(m => m.Genre)
-                .Where(m => m.NumberAvailable > 0);  //Get only available games
+                .Include(m => m.Genre);
+                //.Where(m => m.NumberAvailable > 0);  
 
             if (!String.IsNullOrWhiteSpace(query))
                 gamesQuery = gamesQuery.Where(m => m.Name.Contains(query));
